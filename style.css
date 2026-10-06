@@ -35,3 +35,10 @@ footer { border-top:1px solid #27272a; padding:30px 24px; color:#71717a; text-al
 
 .portfolio-video { width:100%; max-height:620px; display:block; border-radius:16px; border:1px solid #27272a; background:#000; }
 .media-single { max-width:900px; margin:28px auto 0; }
+
+.database-media { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap:28px; align-items:start; }
+.database-flowchart .media { background:#fff; padding:18px; min-height:420px; object-fit:contain; }
+.database-media .portfolio-video { min-height:420px; object-fit:contain; }
+.database-verification { max-width:1050px; }
+.database-verification .portfolio-video { max-height:700px; }
+@media(max-width:800px){ .database-media { grid-template-columns:1fr; } .database-flowchart .media, .database-media .portfolio-video { min-height:0; } }
