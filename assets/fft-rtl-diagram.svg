@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1568" height="1038" viewBox="0 0 1568 1038">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#111"/></marker><marker id="redArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c94b18"/></marker></defs>
+<rect width="1568" height="1038" fill="white"/>
+<g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+<rect x="112" y="126" width="174" height="104" rx="2" fill="#ef7428" stroke="#c94b18" stroke-width="2"/><text x="199" y="170" font-size="20">Address</text><text x="199" y="198" font-size="20">Generator</text>
+<rect x="112" y="263" width="174" height="275" fill="#348d22" stroke="#276a19" stroke-width="2"/><text x="199" y="391" font-size="20" fill="white">Sine/Cos</text><text x="199" y="419" font-size="20" fill="white">Rom</text>
+<rect x="422" y="143" width="223" height="258" fill="#70aa36" stroke="#56862a" stroke-width="2"/><text x="534" y="264" font-size="20" fill="white">Bank A</text><text x="534" y="292" font-size="20" fill="white">(1024)</text>
+<rect x="714" y="143" width="223" height="258" fill="#70aa36" stroke="#56862a" stroke-width="2"/><text x="825" y="264" font-size="20" fill="white">Bank B</text><text x="825" y="292" font-size="20" fill="white">(1024)</text>
+<path d="M576 520 L800 520 L770 574 L608 574 Z" fill="#2854e6" stroke="#1e3fb1" stroke-width="2"/><text x="688" y="554" font-size="20" fill="white">MUX</text>
+<rect x="954" y="487" width="156" height="112" fill="white" stroke="#111" stroke-width="2"/><text x="1032" y="552" font-size="20">Parity Gen</text>
+<rect x="524" y="693" width="259" height="156" fill="#75638c" stroke="#574b68" stroke-width="2"/><text x="654" y="766" font-size="20" fill="white">Complex ALU</text><text x="654" y="794" font-size="20" fill="white">Unit</text>
+<rect x="86" y="719" width="224" height="154" rx="24" fill="#a51d2d" stroke="#771520" stroke-width="2"/><text x="198" y="797" font-size="20" fill="white">Control Unit</text>
+<path d="M988 719 L1161 719 L1134 791 L954 791 Z" fill="white" stroke="#111" stroke-width="2"/><text x="1057" y="761" font-size="20">Shift by 2</text>
+<rect x="1194" y="332" width="191" height="190" fill="#70aa36" stroke="#56862a" stroke-width="2"/><text x="1289" y="414" font-size="20" fill="white">Write Back to</text><text x="1289" y="443" font-size="20" fill="white">Memory</text>
+</g>
+<g fill="none" stroke="#111" stroke-width="2" marker-end="url(#arrow)">
+<path d="M199 230 V263"/>
+<path d="M534 401 V520"/>
+<path d="M825 401 V520"/>
+<path d="M688 574 V693"/>
+<path d="M198 719 V677"/>
+<path d="M310 796 H370"/>
+<path d="M654 849 V895 H1057 V791"/>
+<path d="M1134 755 H1289 V522"/>
+<path d="M286 400 H594 V693"/>
+<path d="M286 470 H594"/>
+</g>
+<g fill="none" stroke="#c94b18" stroke-width="2" marker-end="url(#redArrow)">
+<path d="M199 126 V108 H1022 V487"/>
+<path d="M286 178 H353 V270 H422"/>
+<path d="M937 270 H1022 V108"/>
+</g>
+</svg>
