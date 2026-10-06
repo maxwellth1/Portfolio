@@ -3,7 +3,67 @@
 <body>
 <nav class="site-nav"><div class="nav-inner"><a class="brand" href="index.html">Maxwell Thompson</a><div class="nav-links"><a href="landis.html">Landis+Gyr</a><a href="drone.html">Drone</a><a href="sleeprx.html">SleepRx</a><a href="cs50.html">CS50</a><a href="cli-database.html">CLI Database</a><a href="fft.html">FFT ASIC</a></div></div></nav>
 <main class="container"><a class="back" href="index.html">← All projects</a>
-<section class="section"><span class="eyebrow">Electrical / Software</span><h1>Landis+Gyr</h1><p class="lead">Software and hardware work on an electrical meter testing system, including a Python UI, Arduino control, SCPI instrumentation, and current-transformer hardware.</p></section>
-<section class="section"><h2>Meter Testing Interface</h2><p>I developed a Python UI that interfaces with an electrical meter testing fixture. The UI communicates with an Arduino, which translates commands into SCPI commands sent to the voltage and current sources used to test the meters. The original interface was written in C and I was tasked with translating it into Python.</p><div class="media-grid"><iframe src="https://www.youtube.com/embed/SWaoxzoS1Sw" title="Landis+Gyr meter testing UI" allowfullscreen></iframe><iframe src="https://www.youtube.com/embed/bPGgacWYwlw" title="Current transformer board" allowfullscreen></iframe></div></section>
-<section class="section"><h2>Current Transformer Board</h2><p>I also worked on the design of a current-transformer board and wrote the control software for its ballast resistors. The board provides variable control of output current when attached to three CTs, supporting currents up to 600 amps.</p></section>
+
+<section class="section">
+<span class="eyebrow">Electrical / Software / Test Engineering</span>
+<h1>Landis+Gyr</h1>
+<p class="lead">During my co-op rotation in the GE Lab, I worked across software, electrical test systems, instrumentation, PCB design, and automation for meter-testing equipment.</p>
+</section>
+
+<section class="section">
+<h2>Database Query Agent</h2>
+<p>I developed a web application that accepts natural-language questions within the context of a connected SQL database and returns the corresponding database results. The application uses a LangChain SQL agent to translate user questions into SQL queries and present the results.</p>
+<div class="media-grid">
+<div><video class="portfolio-video" controls preload="metadata" src="assets/intern/database-app-demo.mp4"></video><p class="media-caption">Demonstration of the database application, showing the natural-language query workflow and returned database results.</p></div>
+<div><video class="portfolio-video" controls preload="metadata" src="assets/intern/database-sql-verification.mp4"></video><p class="media-caption">SQL verification demo showing the generated SQL and the corresponding database output.</p></div>
+</div>
+</section>
+
+<section class="section">
+<h2>Mini-Blue</h2>
+<p>Mini-Blue is a miniature version of the Big Blue meter-testing system. I worked on the user interface and manual-control workflow, including starting the interface, enabling the voltage and current sources, and using the JOG function to send current and voltage through the meter. I then verified at the source that the current and voltage outputs were active.</p>
+<div class="media-grid">
+<div><img class="media" src="assets/intern/mini-blue-photo.jpg" alt="Mini-Blue test setup"><p class="media-caption">Mini-Blue test setup and control workstation.</p></div>
+<div><img class="media" src="assets/intern/mini-blue-interface.jpg" alt="Mini-Blue control interface"><p class="media-caption">Mini-Blue control interface and terminal output during system startup.</p></div>
+</div>
+<div class="media-single"><video class="portfolio-video" controls preload="metadata" src="assets/intern/mini-blue-demo.mp4"></video><p class="media-caption">Mini-Blue demonstration: starting the interface, enabling voltage and current, pressing JOG to power the meter, and verifying the source output.</p></div>
+</section>
+
+<section class="section">
+<h2>Optical Probe Redesign</h2>
+<p>I worked on the optical probe redesign, including PCB layout and mechanical fit between the board and the probe head shell. I also added the design to the LTspice simulation and evaluated the received optical signal before and after amplification.</p>
+<div class="gallery">
+<img src="assets/intern/optical-probe-layout-front.png" alt="Optical probe PCB layout">
+<img src="assets/intern/optical-probe-layout-board.png" alt="Optical probe board layout">
+<img src="assets/intern/optical-probe-3d.png" alt="Optical probe 3D model">
+<img src="assets/intern/optical-probe-side-layout.png" alt="Optical probe side layout">
+</div>
+<div class="media-grid">
+<div><img class="media" src="assets/intern/optical-probe-ltspice.png" alt="LTspice optical probe simulation"><p class="media-caption">LTspice simulation of the optical probe receive and amplification circuitry.</p></div>
+<div><img class="media" src="assets/intern/optical-probe-rx-waveform.png" alt="Optical probe receive waveform"><p class="media-caption">Receive-signal waveform showing the optical probe signal before and after amplification.</p></div>
+</div>
+</section>
+
+<section class="section">
+<h2>Universal Socket Routing Board</h2>
+<p>I worked with Fred to solder the universal socket routing boards and then wrote the control code. The software first selects the meter form — the type of meter being powered — and then selects whether the meter should be powered in series, parallel, or polyphase. Based on those selections, the controller sets the appropriate relays to route power to the corresponding holes on the top of the board.</p>
+<div class="media-grid">
+<div><img class="media" src="assets/intern/universal-socket-routing-board.jpg" alt="Universal socket routing board"><p class="media-caption">Universal socket routing board hardware.</p></div>
+<div><img class="media" src="assets/intern/universal-socket-control.jpg" alt="Universal socket routing control"><p class="media-caption">Control software used with the universal socket routing board.</p></div>
+</div>
+<div class="media-single"><video class="portfolio-video" controls preload="metadata" src="assets/intern/universal-socket-routing-demo.mp4"></video><p class="media-caption">Routing-board demonstration: selecting the meter form and power configuration, then using the relay logic to route power to the appropriate socket positions.</p></div>
+<div class="media-single"><img class="media" src="assets/intern/universal-socket-truth-table.png" alt="Universal socket routing truth table"><p class="media-caption">Truth table defining the meter-form and routing selections used by the universal socket routing control logic.</p></div>
+</section>
+
+<section class="section">
+<h2>Meter Testing Interface</h2>
+<p>I developed a Python UI that interfaces with an electrical meter testing fixture. The UI communicates with an Arduino, which translates commands into SCPI commands sent to the voltage and current sources used to test the meters. The original interface was written in C and I was tasked with translating it into Python.</p>
+<div class="media-grid"><iframe src="https://www.youtube.com/embed/SWaoxzoS1Sw" title="Landis+Gyr meter testing UI" allowfullscreen></iframe><iframe src="https://www.youtube.com/embed/bPGgacWYwlw" title="Current transformer board" allowfullscreen></iframe></div>
+</section>
+
+<section class="section">
+<h2>Current Transformer Board</h2>
+<p>I also worked on the design of a current-transformer board and wrote the control software for its ballast resistors. The board provides variable control of output current when attached to three CTs, supporting currents up to 600 amps.</p>
+</section>
+
 </main><footer>Maxwell Thompson · Landis+Gyr</footer></body></html>
