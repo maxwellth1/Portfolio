@@ -65,3 +65,29 @@ footer { border-top:1px solid #27272a; padding:30px 24px; color:#71717a; text-al
   transform: translate(-50%, -50%) rotate(90deg);
   transform-origin: center;
 }
+
+
+/* ASIC Lab page treatment */
+.lab-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(30px, 6vw, 68px);
+  margin: 0 0 70px;
+  border: 1px solid #373047;
+  border-radius: 26px;
+  background:
+    radial-gradient(ellipse at 82% 10%, rgba(124,58,237,.25), transparent 38%),
+    radial-gradient(ellipse at 10% 100%, rgba(14,165,233,.12), transparent 42%),
+    linear-gradient(135deg, #17131f 0%, #101116 55%, #0b1018 100%);
+  box-shadow: 0 24px 70px rgba(0,0,0,.28);
+}
+.lab-hero h1 { max-width: 780px; }
+.lab-hero .lead { max-width: 790px; }
+.lab-hero-meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; }
+.lab-hero-meta span { padding:8px 12px; border:1px solid #454052; border-radius:999px; color:#ddd6fe; background:rgba(15,13,22,.62); font-size:.84rem; }
+.lab-section { padding-top:8px; }
+.lab-section h2 { margin-top:10px; }
+.lab-description { max-width:900px; margin-bottom:26px; }
+.lab-card { background:linear-gradient(155deg,#17171d 0%,#0e0e12 100%); }
+.lab-card h3 { min-height:2.5em; }
+img.lab-diagram { display:block; width:100%; height:auto; margin-top:18px; padding:10px; background:#08090c; object-fit:contain; border-radius:12px; }
