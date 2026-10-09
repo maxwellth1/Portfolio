@@ -42,3 +42,26 @@ footer { border-top:1px solid #27272a; padding:30px 24px; color:#71717a; text-al
 .database-verification { max-width:1050px; }
 .database-verification .portfolio-video { max-height:700px; }
 @media(max-width:800px){ .database-media { grid-template-columns:1fr; } .database-flowchart .media, .database-media .portfolio-video { min-height:0; } }
+
+
+/* Rotate the Mini-Blue demo clockwise so the recorded setup displays upright. */
+.mini-blue-video-frame {
+  position: relative;
+  width: min(100%, 360px);
+  aspect-ratio: 9 / 16;
+  max-height: 640px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+.mini-blue-rotated-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 177.7778%;
+  height: 56.25%;
+  max-height: none;
+  max-width: none;
+  transform: translate(-50%, -50%) rotate(90deg);
+  transform-origin: center;
+}
