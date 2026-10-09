@@ -7,7 +7,7 @@
 <section class="section">
 <span class="eyebrow">Electrical / Software / Test Engineering</span>
 <h1>Landis+Gyr</h1>
-<p class="lead">During my co-op rotation in the GE Lab, I worked across software, electrical test systems, instrumentation, PCB design, and automation for meter-testing equipment.</p>
+<p class="lead">During my co-op rotation in the GE Lab, I worked across software, electrical test systems, instrumentation, PCB design, and automation for electrical energy-meter testing equipment.</p>
 </section>
 
 <section class="section">
@@ -18,14 +18,14 @@
 
 <section class="section">
 <h2>Mini-Blue</h2>
-<p>Mini-Blue is a miniature meter-testing setup built around an RX-30 Radian standard, a precision reference instrument used to measure and verify electrical energy-meter performance, together with voltage and current sources that provide the test signals. I ported the user interface I had developed for the Big Blue meter-testing fixture to Mini-Blue, then adapted and debugged the code for the smaller system and its hardware.</p>
-<div class="media-single"><img class="media" src="assets/intern/mini-blue-testing-fixture.png" alt="Mini-Blue testing fixture"><p class="media-caption">Mini-Blue testing fixture used for meter testing and source control.</p></div><div class="media-single mini-blue-video-frame"><video class="portfolio-video mini-blue-rotated-video" controls preload="metadata" src="assets/intern/mini-blue-demo.mp4"></video><p class="media-caption">Mini-Blue demonstration showing the adapted user interface and test setup.</p></div>
+<p>Mini-Blue is a compact electrical energy-meter testing setup built around an RX-30 Radian standard—a precision reference instrument used to measure and verify meter performance—along with voltage and current sources that provide controlled test signals. I ported the user interface I had developed for the Big Blue electrical meter-testing fixture to Mini-Blue, then adapted and debugged the code for the smaller system and its hardware.</p>
+<div class="media-single"><img class="media" src="assets/intern/mini-blue-testing-fixture.png" alt="Mini-Blue electrical meter testing fixture"><p class="media-caption">Mini-Blue fixture used to test electrical energy meters and control test sources.</p></div><div class="media-single mini-blue-video-frame"><video class="portfolio-video mini-blue-rotated-video" controls preload="metadata" src="assets/intern/mini-blue-demo.mp4"></video><p class="media-caption">Mini-Blue demonstration showing the adapted user interface and electrical meter test setup.</p></div>
 </section>
 
 <section class="section">
 <h2>Optical Probe Redesign</h2>
-<p>The optical probes provide the communication link used to read data from and write data to the meters. As the meters were being updated to sample data at 1 MHz, the existing probes needed to be redesigned to keep up with the increased data rate. I contributed to the redesign by working on the PCB layout and the mechanical fit between the board and probe-head shell. I also added the circuit to an LTspice simulation and evaluated the received optical signal before and after amplification.</p>
-<div class="media-single"><img class="media" src="assets/intern/optical-probe-layout.png" alt="Optical probe PCB and mechanical layout"><p class="media-caption">PCB and mechanical layout work for the optical probe redesign.</p></div>
+<p>Optical probes provide a communication link for reading data from and writing data to electrical energy meters through their optical interface. As the meters were updated to sample data at 1 MHz, the existing probes needed to be redesigned to support the higher data rate. I contributed to the redesign by working on the PCB layout and the mechanical fit between the circuit board and the probe-head shell. I also added the circuit to an LTspice simulation and evaluated the received optical signal before and after amplification.</p>
+<div class="media-single"><img class="media" src="assets/intern/optical-probe-layout.png" alt="Optical probe PCB and mechanical layout"><p class="media-caption">PCB and mechanical layout work for the optical probe used to communicate with electrical energy meters.</p></div>
 <div class="media-grid">
 <div><img class="media" src="assets/intern/optical-probe-ltspice.png" alt="LTspice optical probe simulation"><p class="media-caption">LTspice simulation of the optical probe receive and amplification circuitry.</p></div>
 <div><img class="media" src="assets/intern/optical-probe-rx-waveform.png" alt="Optical probe receive waveform"><p class="media-caption">Receive-signal waveform showing the optical probe signal before and after amplification.</p></div>
@@ -34,16 +34,16 @@
 
 <section class="section">
 <h2>Universal Socket Routing Board</h2>
-<p>The universal socket routing board is a relay-controlled power-routing board that connects the Big Blue meter-testing fixture to the correct socket positions for different meter forms and power configurations. It was needed to make the fixture's power connections adaptable to different meter setups instead of requiring a fixed wiring arrangement. I worked on the board layout and assembly, and wrote the I²C control script that operates its relays and integrates the board with the Big Blue fixture.</p>
-<div class="media-single"><img class="media" src="assets/intern/universal-socket-routing-board.png" alt="Universal socket routing boards"><p class="media-caption">Universal socket routing boards used to route power to different meter configurations.</p></div>
-<div class="media-single"><video class="portfolio-video" controls preload="metadata" src="assets/intern/universal-socket-routing-demo.mp4"></video><p class="media-caption">Routing-board demonstration: selecting the meter form and power configuration, then using the relay logic to route power to the appropriate socket positions.</p></div>
+<p>The universal socket routing board is a relay-controlled power-routing board for an electrical energy-meter testing fixture. It connects the Big Blue fixture's power sources to the appropriate socket contacts for different meter form factors and power configurations. This makes the fixture adaptable to different electrical meter designs without manually rewiring the power connections for each setup. I worked on the board layout and assembly, and wrote the I²C control script that operates its relays and integrates the board with the Big Blue fixture.</p>
+<div class="media-single"><img class="media" src="assets/intern/universal-socket-routing-board.png" alt="Universal socket routing boards"><p class="media-caption">Universal socket routing boards that configure power connections for different electrical meter form factors.</p></div>
+<div class="media-single"><video class="portfolio-video" controls preload="metadata" src="assets/intern/universal-socket-routing-demo.mp4"></video><p class="media-caption">Routing-board demonstration: selecting an electrical meter form and power configuration, then using relay logic to route power to the corresponding socket contacts.</p></div>
 <div class="media-single"><img class="media" src="assets/intern/universal-socket-truth-table.png" alt="Universal socket routing truth table"><p class="media-caption">Truth table defining the meter-form and routing selections used by the universal socket routing control logic.</p></div>
 </section>
 
 <section class="section">
 <h2>Meter Testing Interface</h2>
-<p>I developed a Python UI that interfaces with an electrical meter testing fixture. The UI communicates with an Arduino, which translates commands into SCPI commands sent to the voltage and current sources used to test the meters. The original interface was written in C and I was tasked with translating it into Python.</p>
-<div class="media-grid"><iframe src="https://www.youtube.com/embed/SWaoxzoS1Sw" title="Landis+Gyr meter testing UI" allowfullscreen></iframe><iframe src="https://www.youtube.com/embed/bPGgacWYwlw" title="Current transformer board" allowfullscreen></iframe></div>
+<p>I developed a Python UI that interfaces with an electrical energy-meter testing fixture. The UI communicates with an Arduino, which translates commands into SCPI commands sent to the voltage and current sources used to test the meters. The original interface was written in C and I was tasked with translating it into Python.</p>
+<div class="media-grid"><iframe src="https://www.youtube.com/embed/SWaoxzoS1Sw" title="Landis+Gyr electrical meter testing UI" allowfullscreen></iframe><iframe src="https://www.youtube.com/embed/bPGgacWYwlw" title="Current transformer board" allowfullscreen></iframe></div>
 </section>
 
 <section class="section">
