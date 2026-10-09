@@ -18,13 +18,13 @@
 
 <section class="section">
 <h2>Mini-Blue</h2>
-<p>Mini-Blue is a miniature version of the Big Blue meter-testing system. I worked on the user interface and manual-control workflow, including starting the interface, enabling the voltage and current sources, and using the JOG function to send current and voltage through the meter. I then verified at the source that the current and voltage outputs were active.</p>
-<div class="media-single"><img class="media" src="assets/intern/mini-blue-testing-fixture.png" alt="Mini-Blue testing fixture"><p class="media-caption">Mini-Blue testing fixture used for meter testing and source control.</p></div><div class="media-single"><video class="portfolio-video" controls preload="metadata" src="assets/intern/mini-blue-demo.mp4"></video><p class="media-caption">Mini-Blue demonstration showing the interface, source controls, JOG operation, and verification of the voltage and current outputs.</p></div>
+<p>Mini-Blue is a miniature meter-testing setup built around an RX-30 Radian standard, a precision reference instrument used to measure and verify electrical energy-meter performance, together with voltage and current sources that provide the test signals. I ported the user interface I had developed for the Big Blue meter-testing fixture to Mini-Blue, then adapted and debugged the code for the smaller system and its hardware.</p>
+<div class="media-single"><img class="media" src="assets/intern/mini-blue-testing-fixture.png" alt="Mini-Blue testing fixture"><p class="media-caption">Mini-Blue testing fixture used for meter testing and source control.</p></div><div class="media-single mini-blue-video-frame"><video class="portfolio-video mini-blue-rotated-video" controls preload="metadata" src="assets/intern/mini-blue-demo.mp4"></video><p class="media-caption">Mini-Blue demonstration showing the adapted user interface and test setup.</p></div>
 </section>
 
 <section class="section">
 <h2>Optical Probe Redesign</h2>
-<p>I worked on the optical probe redesign, including PCB layout and mechanical fit between the board and the probe head shell. I also added the design to the LTspice simulation and evaluated the received optical signal before and after amplification.</p>
+<p>The meters were being updated to sample data at 1 MHz, so the optical probes used to read data from and write data to the meters also needed to be redesigned to keep pace with the higher data rate. I worked on the redesign, including PCB layout and the mechanical fit between the board and probe-head shell. I also used LTspice simulation to evaluate the receive circuitry and compare the optical signal before and after amplification.</p>
 <div class="media-single"><img class="media" src="assets/intern/optical-probe-layout.png" alt="Optical probe PCB and mechanical layout"><p class="media-caption">PCB and mechanical layout work for the optical probe redesign.</p></div>
 <div class="media-grid">
 <div><img class="media" src="assets/intern/optical-probe-ltspice.png" alt="LTspice optical probe simulation"><p class="media-caption">LTspice simulation of the optical probe receive and amplification circuitry.</p></div>
@@ -34,7 +34,7 @@
 
 <section class="section">
 <h2>Universal Socket Routing Board</h2>
-<p>I worked with Fred to solder the universal socket routing boards and then wrote the control code. The software first selects the meter form — the type of meter being powered — and then selects whether the meter should be powered in series, parallel, or polyphase. Based on those selections, the controller sets the appropriate relays to route power to the corresponding holes on the top of the board.</p>
+<p>I worked on the PCB layout and assembly of the universal socket routing board, as well as the I²C control script used to operate its relays. The script integrated the power-routing board into the Big Blue meter-testing fixture, allowing the fixture to select the appropriate meter form and power configuration and route power to the corresponding socket positions.</p>
 <div class="media-single"><img class="media" src="assets/intern/universal-socket-routing-board.png" alt="Universal socket routing boards"><p class="media-caption">Universal socket routing boards used to route power to different meter configurations.</p></div>
 <div class="media-single"><video class="portfolio-video" controls preload="metadata" src="assets/intern/universal-socket-routing-demo.mp4"></video><p class="media-caption">Routing-board demonstration: selecting the meter form and power configuration, then using the relay logic to route power to the appropriate socket positions.</p></div>
 <div class="media-single"><img class="media" src="assets/intern/universal-socket-truth-table.png" alt="Universal socket routing truth table"><p class="media-caption">Truth table defining the meter-form and routing selections used by the universal socket routing control logic.</p></div>
