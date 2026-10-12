@@ -91,3 +91,8 @@ footer { border-top:1px solid #27272a; padding:30px 24px; color:#71717a; text-al
 .lab-card { background:linear-gradient(155deg,#17171d 0%,#0e0e12 100%); }
 .lab-card h3 { min-height:2.5em; }
 img.lab-diagram { display:block; width:100%; height:auto; margin-top:18px; padding:10px; background:#08090c; object-fit:contain; border-radius:12px; }
+
+/* Make the Lab 6 controller state diagram easier to read. */
+.controller-state-card { grid-column: 1 / -1; }
+img.controller-state-diagram { display:block; width:100%; max-width:1250px; height:auto; margin:18px auto 0; padding:16px; background:#fff; object-fit:contain; border-radius:12px; }
+@media(max-width:700px) { .controller-state-card { grid-column:auto; } img.controller-state-diagram { padding:6px; } }
