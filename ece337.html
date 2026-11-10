@@ -9,4 +9,138 @@
 <section class="section"><h2>Lab 6 — 4-Point Controller</h2><p>The controller flowchart and RTL diagrams capture the control states, datapath operation sequence, and magnitude block interface.</p><div class="grid">
 <div class="card"><h3>Controller Flowchart</h3><img class="media" loading="lazy" src="assets/ece337/ECE337_lab6-4pt_controller_flowChart.drawio.png" alt="Original Lab 6 4-point controller flowchart"></div>
 <div class="card"><h3>Controller RTL Diagram</h3><img class="media" loading="lazy" src="assets/ece337/ECE337_lab6-controller_RTL.drawio.png" alt="Original Lab 6 controller RTL block diagram"></div>
-<div class="card"><h3>Magnitude RTL Diagram</h3><img class="media" loading="lazy" src="assets/ece337/ECE337_lab6-magnitude_RTL.drawio.png" alt="Original Lab 6 magnitude RTL block diagram"></div></div></section></main><footer>Maxwell Thompson · ECE337 RTL Labs</footer></body></html>
+<div class="card"><h3>Magnitude RTL Diagram</h3><img class="media" loading="lazy" src="assets/ece337/ECE337_lab6-magnitude_RTL.drawio.png" alt="Original Lab 6 magnitude RTL block diagram"></div></div></section>
+<section class="section lab-section">
+  <span class="eyebrow">ECE337 · Lab 07</span>
+  <h2>Lab 7 — APB UART Peripheral</h2>
+  <p class="lab-description">This lab extended the UART receiver into a memory-mapped System-on-Chip peripheral using the Advanced Peripheral Bus (APB). The subordinate interface exposes receiver data, status, and configuration through addressable registers, allowing a processor to read received bytes, check error conditions, and configure the UART bit period and data size.</p>
+  <div class="grid">
+    <article class="card lab-card">
+      <span class="tag">Bus interface · RTL</span>
+      <h3>APB Subordinate Interface</h3>
+      <p>The <code>apb_subordinate</code> module translates APB transactions into the UART receiver's control and data signals. Its register map provides access to the received-data buffer, data-ready and error status, and writable configuration registers. It also generates the data-read handshake so the receiver can clear or advance its buffered data after the processor consumes a byte. Invalid addresses and writes to read-only registers are reported through the APB error response.</p>
+      <button class="diagram-open" type="button" data-diagram="assets/ece337/ECE337_lab7.drawio.svg" data-title="Lab 7 — APB Subordinate RTL Diagram"><img class="lab-diagram zoomable-diagram" loading="lazy" src="assets/ece337/ECE337_lab7.drawio.svg" alt="Lab 7 APB subordinate interface RTL diagram"><span>Click to zoom and inspect diagram ↗</span></button>
+    </article>
+  </div>
+</section>
+
+<section class="section lab-section">
+  <span class="eyebrow">ECE337 · Lab 08</span>
+  <h2>Lab 8 — AHB FIR Filter Accelerator</h2>
+  <p class="lab-description">Lab 8 replaced the simpler APB connection with the pipelined Advanced High-performance Bus (AHB) and connected the bus interface to the FIR filter developed in Lab 6. The work required handling overlapping address and data phases, register-mapped accelerator control, byte-lane alignment, registered read data, and read-after-write hazards.</p>
+  <div class="grid">
+    <article class="card lab-card">
+      <span class="tag">Bus interface · RTL</span>
+      <h3>AHB Subordinate Interface</h3>
+      <p>The <code>ahb_subordinate</code> module acts as the processor-facing register bank for the FIR accelerator. It decodes AHB addresses and read/write controls to expose filter status and results, accept new samples, and store the four filter coefficients. It also validates transfer size and access permissions, aligns data to the correct byte lanes, registers read responses, and handles read-after-write hazards so a back-to-back read observes the most recently written value.</p>
+      <button class="diagram-open" type="button" data-diagram="assets/ece337/ECE337_Lab8-AHB_subordinate.drawio.svg" data-title="Lab 8 — AHB Subordinate RTL Diagram"><img class="lab-diagram zoomable-diagram" loading="lazy" src="assets/ece337/ECE337_Lab8-AHB_subordinate.drawio.svg" alt="Lab 8 AHB subordinate interface RTL diagram"><span>Click to zoom and inspect diagram ↗</span></button>
+    </article>
+    <article class="card lab-card">
+      <span class="tag">Control logic · FSM</span>
+      <h3>Coefficient Loader State Machine</h3>
+      <p>The <code>coefficient_loader</code> is a finite-state machine that sequences the transfer of the four stored FIR coefficients from the AHB register interface into the filter. It tracks which coefficient is being selected, asserts the load control at the appropriate time, and clears or completes the loading sequence. Separating this sequencing logic from the bus interface keeps coefficient loading deterministic and lets the FIR datapath focus on filtering samples.</p>
+      <button class="diagram-open" type="button" data-diagram="assets/ece337/ECE337_Lab8-coefficient_loader_state_diagram.drawio.svg" data-title="Lab 8 — Coefficient Loader State Diagram"><img class="lab-diagram zoomable-diagram" loading="lazy" src="assets/ece337/ECE337_Lab8-coefficient_loader_state_diagram.drawio.svg" alt="Lab 8 coefficient loader finite state machine diagram"><span>Click to zoom and inspect diagram ↗</span></button>
+    </article>
+  </div>
+</section>
+
+<section class="section lab-section">
+  <span class="eyebrow">ECE337 · Cooperative Design Lab</span>
+  <h2>Systolic Array — Matrix Multiply Accelerator</h2>
+  <p class="lab-description">The Cooperative Design Lab brought the individual bus and datapath concepts together in a larger SoC accelerator for fully connected neural-network inference. The accelerator uses an AHB subordinate interface to communicate with the processor, buffers to stage weights and input vectors, a controller to coordinate data movement, and a systolic array to perform parallel matrix multiplication. The following diagrams document the system architecture and the compute datapath.</p>
+  <div class="grid">
+    <article class="card lab-card">
+      <span class="tag">System architecture</span>
+      <h3>Top-Level Accelerator Architecture</h3>
+      <p>This diagram shows how the processor-facing AHB interface connects to the controller and data buffers, and how those blocks feed the systolic array and activation stage. The top level coordinates weight loading, input delivery, inference control, status reporting, and output retrieval. Keeping the bus-facing logic separate from the compute datapath makes the accelerator easier to integrate and verify.</p>
+      <button class="diagram-open" type="button" data-diagram="assets/ece337/CDL-Systolic-Array-Top-Level.drawio.svg" data-title="Systolic Array — Top-Level Architecture"><img class="lab-diagram zoomable-diagram" loading="lazy" src="assets/ece337/CDL-Systolic-Array-Top-Level.drawio.svg" alt="Top-level matrix multiply accelerator architecture"><span>Click to zoom and inspect diagram ↗</span></button>
+    </article>
+    <article class="card lab-card">
+      <span class="tag">Parallel datapath</span>
+      <h3>8×8 Systolic Array, Bias Adder &amp; Activation</h3>
+      <p>The 8×8 systolic array is the accelerator's parallel compute fabric. Processing elements pass data between neighboring cells while performing multiply-accumulate operations, allowing matrix products to be built across the array over successive clock cycles. The output path adds the configured bias and applies the selected activation function before results are made available to the system.</p>
+      <button class="diagram-open" type="button" data-diagram="assets/ece337/CDL-Systolic-Array-8x8-Bias-Activation.drawio.svg" data-title="Systolic Array — 8×8 Array, Bias Adder and Activation"><img class="lab-diagram zoomable-diagram" loading="lazy" src="assets/ece337/CDL-Systolic-Array-8x8-Bias-Activation.drawio.svg" alt="8 by 8 systolic array with bias adder and activation stage"><span>Click to zoom and inspect diagram ↗</span></button>
+    </article>
+    <article class="card lab-card">
+      <span class="tag">Processing element</span>
+      <h3>Floating-Point MAC Datapath</h3>
+      <p>Each multiply-accumulate (MAC) processing element combines an incoming activation with a stored weight, multiplies the operands, and accumulates the product with the partial sum. Repeating this operation across the array forms the dot products needed for matrix multiplication. This diagram focuses on the arithmetic datapath inside the systolic processing elements.</p>
+      <button class="diagram-open" type="button" data-diagram="assets/ece337/CDL-Systolic-Array-MAC.drawio.svg" data-title="Systolic Array — Floating-Point MAC Datapath"><img class="lab-diagram zoomable-diagram" loading="lazy" src="assets/ece337/CDL-Systolic-Array-MAC.drawio.svg" alt="Floating-point multiply accumulate processing element diagram"><span>Click to zoom and inspect diagram ↗</span></button>
+    </article>
+    <article class="card lab-card">
+      <span class="tag">Output processing</span>
+      <h3>Activation Module</h3>
+      <p>The activation module transforms the computed network outputs according to the mode selected by the processor. The design supports ReLU, binary, identity, and leaky-ReLU behavior. Keeping activation separate from the MAC array allows the same matrix-multiplication datapath to support different output functions without changing the core multiply-accumulate structure.</p>
+      <button class="diagram-open" type="button" data-diagram="assets/ece337/CDL-Systolic-Array-Activation.drawio.svg" data-title="Systolic Array — Activation Module"><img class="lab-diagram zoomable-diagram" loading="lazy" src="assets/ece337/CDL-Systolic-Array-Activation.drawio.svg" alt="Systolic array activation module diagram"><span>Click to zoom and inspect diagram ↗</span></button>
+    </article>
+  </div>
+</section>
+
+<div class="diagram-viewer" id="diagramViewer" aria-hidden="true">
+  <div class="diagram-viewer-toolbar">
+    <strong id="diagramViewerTitle">RTL Diagram</strong>
+    <div class="diagram-viewer-actions">
+      <button type="button" id="diagramZoomOut" aria-label="Zoom out">−</button>
+      <button type="button" id="diagramZoomIn" aria-label="Zoom in">+</button>
+      <button type="button" id="diagramFit">Fit</button>
+      <button type="button" id="diagramReset">Reset</button>
+      <button type="button" id="diagramClose" aria-label="Close diagram">✕</button>
+    </div>
+  </div>
+  <div class="diagram-viewer-viewport" id="diagramViewport">
+    <img id="diagramViewerImage" alt="Enlarged RTL diagram">
+  </div>
+  <p class="diagram-viewer-hint">Scroll to zoom · Drag to pan · Use Fit to return to the full diagram</p>
+</div>
+
+<style>
+.diagram-open { display:block; width:100%; padding:0; border:0; background:transparent; color:#c4b5fd; text-align:left; cursor:zoom-in; font:inherit; }
+.diagram-open span { display:block; padding:12px 2px 0; font-size:.85rem; }
+img.lab-diagram { width:100%; max-height:340px; object-fit:contain; background:#fff; border-radius:12px; padding:12px; }
+.diagram-viewer { display:none; position:fixed; inset:0; z-index:1000; padding:16px; background:rgba(3,4,8,.97); }
+.diagram-viewer.open { display:flex; flex-direction:column; }
+.diagram-viewer-toolbar { display:flex; justify-content:space-between; align-items:center; gap:14px; color:#fff; padding:4px 4px 14px; }
+.diagram-viewer-actions { display:flex; flex-wrap:wrap; gap:8px; }
+.diagram-viewer-actions button { border:1px solid #52525b; border-radius:8px; padding:8px 13px; background:#18181b; color:#fff; cursor:pointer; font:inherit; }
+.diagram-viewer-viewport { position:relative; flex:1; min-height:0; overflow:hidden; border:1px solid #3f3f46; border-radius:12px; background:#fff; cursor:grab; touch-action:none; }
+.diagram-viewer-viewport.dragging { cursor:grabbing; }
+#diagramViewerImage { position:absolute; top:50%; left:50%; max-width:none; max-height:none; width:auto; height:auto; transform:translate(-50%,-50%) scale(1); transform-origin:center; user-select:none; -webkit-user-drag:none; }
+.diagram-viewer-hint { text-align:center; margin:10px 0 0; font-size:.82rem; }
+@media(max-width:700px) { .diagram-viewer { padding:8px; } .diagram-viewer-toolbar { align-items:flex-start; flex-direction:column; } .diagram-viewer-actions button { padding:7px 10px; } }
+</style>
+<script>
+(() => {
+  const viewer=document.getElementById('diagramViewer');
+  const viewport=document.getElementById('diagramViewport');
+  const image=document.getElementById('diagramViewerImage');
+  const title=document.getElementById('diagramViewerTitle');
+  if(!viewer || !viewport || !image) return;
+  let scale=1, x=0, y=0, dragging=false, startX=0, startY=0, originX=0, originY=0;
+  const render=()=>{ image.style.transform='translate(calc(-50% + '+x+'px), calc(-50% + '+y+'px)) scale('+scale+')'; };
+  const fit=()=>{
+    if(!image.naturalWidth || !image.naturalHeight) return;
+    const ratio=Math.min((viewport.clientWidth-40)/image.naturalWidth,(viewport.clientHeight-40)/image.naturalHeight,1);
+    scale=Math.max(.05,ratio); x=0; y=0; render();
+  };
+  const open=(src,label)=>{
+    title.textContent=label; image.onload=fit; image.src=src;
+    viewer.classList.add('open'); viewer.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    if(image.complete) fit();
+  };
+  const close=()=>{viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');document.body.style.overflow='';};
+  document.querySelectorAll('.diagram-open').forEach(button=>button.addEventListener('click',()=>open(button.dataset.diagram,button.dataset.title)));
+  document.getElementById('diagramClose').addEventListener('click',close);
+  document.getElementById('diagramZoomIn').addEventListener('click',()=>{scale=Math.min(8,scale*1.25);render();});
+  document.getElementById('diagramZoomOut').addEventListener('click',()=>{scale=Math.max(.05,scale/1.25);render();});
+  document.getElementById('diagramFit').addEventListener('click',fit);
+  document.getElementById('diagramReset').addEventListener('click',()=>{scale=1;x=0;y=0;render();});
+  viewport.addEventListener('wheel',event=>{event.preventDefault();scale=Math.max(.05,Math.min(8,scale*(event.deltaY<0?1.12:.89)));render();},{passive:false});
+  viewport.addEventListener('pointerdown',event=>{dragging=true;startX=event.clientX;startY=event.clientY;originX=x;originY=y;viewport.classList.add('dragging');viewport.setPointerCapture(event.pointerId);});
+  viewport.addEventListener('pointermove',event=>{if(!dragging)return;x=originX+event.clientX-startX;y=originY+event.clientY-startY;render();});
+  const stop=()=>{dragging=false;viewport.classList.remove('dragging');};
+  viewport.addEventListener('pointerup',stop);viewport.addEventListener('pointercancel',stop);
+  viewer.addEventListener('click',event=>{if(event.target===viewer)close();});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&viewer.classList.contains('open'))close();});
+})();
+</script>
+</main><footer>Maxwell Thompson · ECE337 RTL Labs</footer></body></html>
